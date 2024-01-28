@@ -1,85 +1,147 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import { AiOutlineClose } from "react-icons/ai";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { MdOutlineLightMode, MdDarkMode } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthModal, setTheme } from "../Redux-Toolkit/Slices/auth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const handleCloseNavbar = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const dispatch = useDispatch();
+  const mode = useSelector((state) => state.mode);
+  const authModal = useSelector((state) => state.AuthModal);
   return (
-    <header className="relative bg-[#f7fdfd] z-50">
-      <nav className="container mx-auto flex items-center justify-between p-5">
+    <header className="relative bg-[#f7fdfd] dark:bg-slate-900 z-30">
+      {/* Desktop menu starts */}
+      <nav className="container mx-auto flex items-center justify-between py-5 px-5">
         {/* Nav logo starts */}
         <div>
-          <Link to="/" className="text-blue-600 font-bold text-xl">
-            Job<span className="text-[#1677cccb]">Finder</span>
-          </Link>
+          <div className="hover:scale-110 transition-none ">
+            <NavLink to="/">
+              <div className="text-blue-600 font-bold text-xl leading-[0.7]">
+                Jobs<span className="text-[#1677cccb]">24x7</span>
+              </div>
+              <div className="text-red-800 text-[0.5rem]">
+                Get your dream job today
+              </div>
+            </NavLink>
+          </div>
         </div>
         {/* Nav logo ends */}
         {/* Nav routes starts */}
         <ul className="hidden lg:flex gap-10 text-base">
-          <li>
-            <Link to="/">Find Job</Link>
+          <li className="dark:text-white">
+            <NavLink to="/">Find Job</NavLink>
           </li>
-          <li>
-            <Link to="/companies">Companies</Link>
+          <li className="dark:text-white">
+            <NavLink to="/companies">Companies</NavLink>
           </li>
-          <li>
-            <Link to="/upload-job">Upload Job</Link>
+          <li className="dark:text-white">
+            <NavLink to="/upload-job">Upload Job</NavLink>
           </li>
-          <li>
-            <Link to="/about-us">About</Link>
+          <li className="dark:text-white">
+            <NavLink to="/about-us">About</NavLink>
           </li>
         </ul>
         {/* Nav routes ends */}
-        {/* Auth button starts */}
-        <div className="hidden lg:block">
-          <Link to="/user-auth">
-            <CustomButton
-              title="Sign In"
-              containerStyles="text-blue-600 py-1.5 px-5 focus:outline-none hover:bg-blue-700 hover:text-white rounded-full text-base border border-blue-600"
+        <div className="hidden lg:flex items-center gap-10">
+          {/* Theme button starts */}
+          {mode === "dark" ? (
+            <MdOutlineLightMode
+              fontSize={"1.5rem"}
+              color="white"
+              cursor={"pointer"}
+              onClick={() => dispatch(setTheme(!mode))}
             />
-          </Link>
+          ) : (
+            <MdDarkMode
+              fontSize={"1.5rem"}
+              cursor={"pointer"}
+              onClick={() => dispatch(setTheme(!mode))}
+            />
+          )}
+          {/* Theme button ends */}
+          {/* Auth button starts */}
+          <CustomButton
+            title="Sign In"
+            containerStyles="text-blue-600 py-1.5 px-5 focus:outline-none hover:bg-blue-700 hover:text-white rounded-full text-base border border-blue-600"
+            onClick={() => dispatch(setAuthModal(true))}
+          />
+          {/* Auth button ends */}
         </div>
-        {/* Auth button ends */}
+        {/* Mobile menu button starts */}
         <button
-          className="block lg:hidden text-slate-900"
+          className="block lg:hidden text-slate-900 dark:text-white"
           onClick={() => setIsOpen((prev) => !prev)}
         >
           {isOpen ? <AiOutlineClose size={26} /> : <HiMenuAlt3 size={26} />}
         </button>
+        {/* Mobile menu button ends */}
       </nav>
-        {/* Mobile menu starts */}
-        <div
-          className={`${
-            isOpen ? "absolute flex bg-[#f7fdfd]" : "hidden"
-          } container mx-auto lg:hidden flex-col pl-8 gap-3 py-5`}
+      {/* Desktop menu ends */}
+      {/* Mobile menu starts */}
+      <nav
+        className={`${
+          isOpen ? "absolute flex bg-[#f7fdfd] dark:bg-slate-900" : "hidden"
+        } container mx-auto lg:hidden flex-col items-center gap-3 py-5`}
+      >
+        <NavLink
+          to="/"
+          className={"dark:text-white"}
+          onClick={handleCloseNavbar}
         >
-          <Link to="/" onClick={handleCloseNavbar}>
-            Find Job
-          </Link>
-          <Link to="/companies" onClick={handleCloseNavbar}>
-            Companies
-          </Link>
-          <Link to="/upload-job">Upload Job</Link>
-          <Link to="/about-us" onClick={handleCloseNavbar}>
-            About
-          </Link>
-
-        {/* Auth button starts */}
-          <Link to="/user-auth">
-            <CustomButton
-              title="Sign In"
-              containerStyles="text-blue-600 py-1.5 px-5 my-10 focus:outline-none hover:bg-blue-700 hover:text-white rounded-full text-base border border-blue-600"
+          Find Job
+        </NavLink>
+        <NavLink
+          to="/companies"
+          className={"dark:text-white"}
+          onClick={handleCloseNavbar}
+        >
+          Companies
+        </NavLink>
+        <NavLink to="/upload-job" className={"dark:text-white"}>
+          Upload Job
+        </NavLink>
+        <NavLink
+          to="/about-us"
+          className={"dark:text-white"}
+          onClick={handleCloseNavbar}
+        >
+          About
+        </NavLink>
+        <div className="flex flex-row-reverse items-center gap-10">
+          {/* Theme button starts */}
+          {mode === "dark" ? (
+            <MdOutlineLightMode
+              fontSize={"1.5rem"}
+              color="white"
+              cursor={"pointer"}
+              onClick={() => dispatch(setTheme(!mode))}
             />
-          </Link>
-        {/* Auth button ends */}
+          ) : (
+            <MdDarkMode
+              fontSize={"1.5rem"}
+              cursor={"pointer"}
+              onClick={() => dispatch(setTheme(!mode))}
+            />
+          )}
+          {/* Theme button ends */}
+          {/* Auth button starts */}
+          <CustomButton
+            title="Sign In"
+            containerStyles="text-blue-600 py-1.5 px-5 focus:outline-none hover:bg-blue-700 hover:text-white rounded-full text-base border border-blue-600"
+            onClick={() => dispatch(setAuthModal(true))}
+          />
+          {/* Auth button ends */}
         </div>
-        {/* Mobile menu ends */}
+      </nav>
+      {/* Mobile menu ends */}
     </header>
   );
 };

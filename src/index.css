@@ -4,9 +4,28 @@ a {
 }
 
 li:hover {
-  font-weight: 700;
+  font-weight: 700 !important;
+  color: #1676cc !important;
+}
+
+.active {
   color: #1676cc;
 }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgba(0, 0, 0, 0.8); */
+  /* background: rgba(209, 197, 197, 0.8); */
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  overflow-y: hidden;
+}
+
 
 @tailwind base;
 @tailwind components;

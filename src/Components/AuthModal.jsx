@@ -17,8 +17,6 @@ const AuthModal = () => {
       setTab(0);
     }
   };
-  const location = useLocation(); //To get the current location
-  const navigate = useNavigate();
   const [isSignup, setIsSignup] = useState(false);
   return (
     <div className="overlay">
@@ -36,7 +34,6 @@ const AuthModal = () => {
               data-modal-hide="authentication-modal"
               onClick={() => {
                 dispatch(setAuthModal(false));
-                navigate(location);
               }}
             >
               <svg

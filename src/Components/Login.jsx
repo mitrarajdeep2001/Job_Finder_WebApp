@@ -1,11 +1,39 @@
+import { useState } from "react";
+
 const Login = ({ tab, setIsSignup }) => {
-  //This will change the url just to the user-signin
-  window.history.replaceState(null, "", "/user-signin");
+  const [jobSeekerFormData, setJobSeekerFormData] = useState({});
+  const [companyFormData, setCompanyFormData] = useState({});
+  const [toggleRememberMe, setToggleRememberMe] = useState({
+    jobSeeker: false,
+    company: false,
+  });
+  function handleJobSeekerFormData(event) {
+    setJobSeekerFormData({
+      ...jobSeekerFormData,
+      [event.target.name]: event.target.value,
+    });
+  }
+  function handleCompanyFormData(event) {
+    setCompanyFormData({
+      ...companyFormData,
+      [event.target.name]: event.target.value,
+    });
+  }
+  function handleToggleRememberMe(event) {
+    setToggleRememberMe({
+      ...toggleRememberMe,
+      [event.target.name]: !toggleRememberMe[event.target.name],
+    });
+  }
+  function handleLogin(event) {
+    event.preventDefault();
+    console.log(jobSeekerFormData, toggleRememberMe);
+  }
   return (
     <>
       {tab === 0 && (
         <div className="p-4 md:p-5">
-          <form className="space-y-4" action="#">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <div>
               <label
                 for="email"
@@ -15,8 +43,10 @@ const Login = ({ tab, setIsSignup }) => {
               </label>
               <input
                 type="email"
-                name="email"
                 id="email"
+                name="email"
+                onChange={handleJobSeekerFormData}
+                value={jobSeekerFormData.email}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="name@gmail.com"
                 required
@@ -31,8 +61,10 @@ const Login = ({ tab, setIsSignup }) => {
               </label>
               <input
                 type="password"
-                name="password"
                 id="password"
+                name="password"
+                onChange={handleJobSeekerFormData}
+                value={jobSeekerFormData.password}
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required
@@ -44,7 +76,9 @@ const Login = ({ tab, setIsSignup }) => {
                   <input
                     id="remember"
                     type="checkbox"
-                    value=""
+                    name="jobSeeker"
+                    value={toggleRememberMe.jobSeeker}
+                    onClick={handleToggleRememberMe}
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                     required
                   />
@@ -83,7 +117,7 @@ const Login = ({ tab, setIsSignup }) => {
       )}
       {tab === 1 && (
         <div className="p-4 md:p-5">
-          <form className="space-y-4" action="#">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <div>
               <label
                 for="email"
@@ -93,8 +127,10 @@ const Login = ({ tab, setIsSignup }) => {
               </label>
               <input
                 type="email"
-                name="email"
                 id="email"
+                name="email"
+                onChange={handleCompanyFormData}
+                value={companyFormData.email}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="name@company.com"
                 required
@@ -109,8 +145,10 @@ const Login = ({ tab, setIsSignup }) => {
               </label>
               <input
                 type="password"
-                name="password"
                 id="password"
+                name="password"
+                onChange={handleCompanyFormData}
+                value={companyFormData.password}
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required
@@ -122,7 +160,9 @@ const Login = ({ tab, setIsSignup }) => {
                   <input
                     id="remember"
                     type="checkbox"
-                    value=""
+                    name="company"
+                    value={toggleRememberMe.company}
+                    onClick={handleToggleRememberMe}
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                     required
                   />

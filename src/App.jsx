@@ -12,6 +12,7 @@ import AuthModal from "./Components/AuthModal";
 function App() {
   const mode = useSelector((state) => state.mode);
   const authModal = useSelector((state) => state.authModal);
+  console.log(import.meta.env.VITE_REACT_APP_APPWRITE_PROJECT_ID);
   return (
     <div className={mode}>
       {/* Auth modal starts */}

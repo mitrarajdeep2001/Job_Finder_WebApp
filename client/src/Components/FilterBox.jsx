@@ -43,7 +43,7 @@ const FilterBox = () => {
           id="dropdown-example"
           className={`${filterDropdown.jobType && "hidden"} py-2`}
         >
-          {["Full-Time", "Part-Time", "Contract", "Remote"].map(
+          {["Full-Time", "Part-Time", "Contract"].map(
             (type, index) => (
               <li key={index} class="flex items-center mb-4">
                 <input

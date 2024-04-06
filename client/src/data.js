@@ -64,7 +64,7 @@ export const jobList = [
   {
     id: 1,
     jobTitle: "Software Development Engineer",
-    jobDescription: `We are currently looking for an experienced Software Development Engineer to join our team. The ideal candidate is excited about the incredible opportunity that cloud computing represents, and is passionate about delivering high quality services in a hyper-growth environment where priorities can shift fast. As a member of our team, you'll work alongside outstanding engineers and leaders, refine product requirements with product and program managers, define architecture, and be a leader in the implementation and launch of software.
+    jobDesc: `We are currently looking for an experienced Software Development Engineer to join our team. The ideal candidate is excited about the incredible opportunity that cloud computing represents, and is passionate about delivering high quality services in a hyper-growth environment where priorities can shift fast. As a member of our team, you'll work alongside outstanding engineers and leaders, refine product requirements with product and program managers, define architecture, and be a leader in the implementation and launch of software.
 
       All team members actively participate in product definition, technical architecture review, iterative development, code review, and operations. Along with this, you’ll have the opportunity to interact with enterprise customers to ensure their needs are met -- clear, professional communication with teammates and customers is an important part of the job.
       
@@ -91,7 +91,7 @@ export const jobList = [
   {
     id: 2,
     jobTitle: "Software Development Engineer",
-    jobDescription: `We are looking for talented engineers who take great pride in both the technical and business contribution of their work. You will have the opportunity to have a significant impact on our systems, our business and most importantly, our customers. As a member of our team, you will work closely with the business to design and implement new features. You will contribute to all aspects of an agile software development life cycle including design, architecture, development, documentation, testing and operations. You will push your design and architecture limits by owning all aspects of solutions end-to-end, through full stack software development.
+    jobDesc: `We are looking for talented engineers who take great pride in both the technical and business contribution of their work. You will have the opportunity to have a significant impact on our systems, our business and most importantly, our customers. As a member of our team, you will work closely with the business to design and implement new features. You will contribute to all aspects of an agile software development life cycle including design, architecture, development, documentation, testing and operations. You will push your design and architecture limits by owning all aspects of solutions end-to-end, through full stack software development.
     
     Basic Qualifications
 
@@ -109,7 +109,7 @@ export const jobList = [
   {
     id: 3,
     jobTitle: "Frontend Software Engineer - WFH",
-    jobDescription: `We're looking for a strong frontend engineer who can contribute to our initial product, which is a web application. Our stack is Python/Django and Java on the backend and React/Javascript on the frontend. This is an opportunity to have a big impact and get lots of ownership. We're looking for someone who thrives in the very early stages of a company and is self driven.
+    jobDesc: `We're looking for a strong frontend engineer who can contribute to our initial product, which is a web application. Our stack is Python/Django and Java on the backend and React/Javascript on the frontend. This is an opportunity to have a big impact and get lots of ownership. We're looking for someone who thrives in the very early stages of a company and is self driven.
 
 
     Deliver features in an end-to-end manner: technical design, development, testing, deployment and maintenance
@@ -130,7 +130,7 @@ export const jobList = [
   {
     id: 4,
     jobTitle: "React.js Application Developer",
-    jobDescription: `Role: Application Developer Project Role Description: Design, build and configure applications to meet business process and application requirements. Must have Skills:React.js Good to Have Skills: React Native Key Responsibilities: 1: Responsible for translating designs wireframes into high quality code 2: Ability to work creatively and analytically in a problem-solving 3: Ability to operate independently and make decisions with little direct supervision Technical Experience: 1: Strong core JavaScript, TypeScript, JSX and CSS 2: 4 years of JavaScript development experience 3: Minimum of 2-4 years of experience with React Native and Strong in React-Native UI framework 4: Experience in mobile application development 5: Good hold on React JS Concepts 6: Strong in React Native design patterns like Flux, Redux and Context API with Hooks Professional Attributes:1: Good verbal written communication skills to connect with customers at varying levels of the organization Strong active listening, multitasking, interpersonal and organizational skills 2: Logical problem-solving skills and identify solutions based on written procedures, guidelines and process Educational Qualification:Bachelor of Engineering , Bachelor of computer Applications, Master of computer applications
+    jobDesc: `Role: Application Developer Project Role Description: Design, build and configure applications to meet business process and application requirements. Must have Skills:React.js Good to Have Skills: React Native Key Responsibilities: 1: Responsible for translating designs wireframes into high quality code 2: Ability to work creatively and analytically in a problem-solving 3: Ability to operate independently and make decisions with little direct supervision Technical Experience: 1: Strong core JavaScript, TypeScript, JSX and CSS 2: 4 years of JavaScript development experience 3: Minimum of 2-4 years of experience with React Native and Strong in React-Native UI framework 4: Experience in mobile application development 5: Good hold on React JS Concepts 6: Strong in React Native design patterns like Flux, Redux and Context API with Hooks Professional Attributes:1: Good verbal written communication skills to connect with customers at varying levels of the organization Strong active listening, multitasking, interpersonal and organizational skills 2: Logical problem-solving skills and identify solutions based on written procedures, guidelines and process Educational Qualification:Bachelor of Engineering , Bachelor of computer Applications, Master of computer applications
     15 years of full time education`,
     jobType: "Full-Time",
     experience: 5,
@@ -143,7 +143,7 @@ export const jobList = [
   {
     id: 5,
     jobTitle: "Web Developer Intern",
-    jobDescription: `Eligibility
+    jobDesc: `Eligibility
 
     A PC or Laptop with decent internet speed.
     
@@ -194,7 +194,7 @@ export const jobList = [
   {
     id: 6,
     jobTitle: "Software Engineer II",
-    jobDescription: `Responsibilities
+    jobDesc: `Responsibilities
 
     Contribute towards building the Azure Sovereign Cloud platform that makes it possible for supporting multiple classes of applications accounting for application consistency, availability, and security
     Works in collaboration with teams across a single organization to develop reliable, scalable, and high-performance, software designs
@@ -222,7 +222,7 @@ export const jobList = [
   {
     id: 7,
     jobTitle: "Sales Manager I",
-    jobDescription: `Revised Job Description
+    jobDesc: `Revised Job Description
 
     Serve as the primary point of contact for assigned client accounts, understanding their goals, needs, and challenges.
     Develop account strategies to overcome the challenges and action plans to meet client objectives and maximize account growth.
@@ -259,7 +259,7 @@ export const jobList = [
   {
     id: 8,
     jobTitle: "Staff Data Scientist",
-    jobDescription: `What you'll do:
+    jobDesc: `What you'll do:
 
     Leads the end-to-end deployment workflows of complex Machine Learning/Deep Learning/Gen-AI (LLM based) projects in collaboration with in-house team of Junior/Senior/Staff Data Scientists and Junior/Mid-Senior Machine Learning Engineers. Proactively collaborates with the Data Scientists on various AdTech projects and works on developing Technical Design/Low Level Design (LLD) diagrams. Constantly leads the D2D monitoring, observability and operational excellence of deployed ML models in production, to ensure their seamless and smooth functioning at all times. Is constantly up-to-date with latest tech stack and innovations in cloud computing, system design, distributed computing, container and workflow orchestration, SQL & NoSQL databases and APIs.
     
@@ -281,7 +281,7 @@ export const jobList = [
   {
     id: 9,
     jobTitle: "Node.Js Developer",
-    jobDescription: `About the role As a part of our team, your role is to develop web applications in Node.js and document the process. Responsibilities
+    jobDesc: `About the role As a part of our team, your role is to develop web applications in Node.js and document the process. Responsibilities
 
     To work with development teams and product managers to ideate software solutions.
     To design client-side architecture.
@@ -316,7 +316,7 @@ export const jobList = [
   {
     id: 10,
     jobTitle: "Javascript Developer",
-    jobDescription: `Role: Javascript Developer Project Role Description: Design, build and configure applications to meet business process and application requirements. Must have Skills:React.js Good to Have Skills: React Native Key Responsibilities: 1: Responsible for translating designs wireframes into high quality code 2: Ability to work creatively and analytically in a problem-solving 3: Ability to operate independently and make decisions with little direct supervision Technical Experience: 1: Strong core JavaScript, TypeScript, JSX and CSS 2: 4 years of JavaScript development experience 3: Minimum of 2-4 years of experience with React Native and Strong in React-Native UI framework 4: Experience in mobile application development 5: Good hold on React JS Concepts 6: Strong in React Native design patterns like Flux, Redux and Context API with Hooks Professional Attributes:1: Good verbal written communication skills to connect with customers at varying levels of the organization Strong active listening, multitasking, interpersonal and organizational skills 2: Logical problem-solving skills and identify solutions based on written procedures, guidelines and process Educational Qualification:Bachelor of Engineering , Bachelor of computer Applications, Master of computer applications
+    jobDesc: `Role: Javascript Developer Project Role Description: Design, build and configure applications to meet business process and application requirements. Must have Skills:React.js Good to Have Skills: React Native Key Responsibilities: 1: Responsible for translating designs wireframes into high quality code 2: Ability to work creatively and analytically in a problem-solving 3: Ability to operate independently and make decisions with little direct supervision Technical Experience: 1: Strong core JavaScript, TypeScript, JSX and CSS 2: 4 years of JavaScript development experience 3: Minimum of 2-4 years of experience with React Native and Strong in React-Native UI framework 4: Experience in mobile application development 5: Good hold on React JS Concepts 6: Strong in React Native design patterns like Flux, Redux and Context API with Hooks Professional Attributes:1: Good verbal written communication skills to connect with customers at varying levels of the organization Strong active listening, multitasking, interpersonal and organizational skills 2: Logical problem-solving skills and identify solutions based on written procedures, guidelines and process Educational Qualification:Bachelor of Engineering , Bachelor of computer Applications, Master of computer applications
     15 years of full time education`,
     jobType: "Full-Time",
     experience: 5,

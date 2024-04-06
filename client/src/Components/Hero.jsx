@@ -7,12 +7,12 @@ const Banner = () => {
   return (
     <div className="container mx-auto p-5 h-auto">
       <div className="flex justify-between items-end">
-        <div className="mb-5 md:mb-10">
+        <div className="mb-5 md:mb-10" data-aos="fade-right">
           <p className="text-slate-700 dark:text-white text-xl md:text-3xl lg:text-6xl font-bold">
             Find Your Dream Job With Ease
           </p>
         </div>
-        <div className="w-2/3 md:w-1/3 lg:w-2/3 xl:w-1/3 h-full">
+        <div className="w-2/3 md:w-1/3 lg:w-2/3 xl:w-1/3 h-full" data-aos="fade-left">
           <img src={heroImg} alt="hero_img" className="object-contain" />
         </div>
       </div>

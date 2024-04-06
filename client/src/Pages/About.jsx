@@ -6,7 +6,7 @@ const About = () => {
     <div className="bg-[#f7fdfd] dark:bg-slate-900">
       <div className="container mx-auto px-5 pb-10">
         <div className="flex flex-col lg:flex-row items-center justify-between lg:gap-10 xl:gap-32">
-          <div className="flex-1">
+          <div className="flex-1" data-aos="fade-right">
             <h2 className="text-blue-600 font-bold text-3xl mb-5">About Us</h2>
             <p className="font-medium dark:text-white">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
@@ -23,11 +23,16 @@ const About = () => {
           <div
             className=" flex-1 my-20 w-full flex
          items-center"
+            data-aos="fade-left"
           >
-            <img className="object-cover rounded-lg" src={AboutUsImg} alt="about_img" />
+            <img
+              className="object-cover rounded-lg"
+              src={AboutUsImg}
+              alt="about_img"
+            />
           </div>
         </div>
-        <p className="font-medium dark:text-white">
+        <p className="font-medium dark:text-white" data-aos="fade-up">
           Etiam justo justo, placerat vel fringilla at, egestas eu felis.
           Phasellus vel libero at ligula mattis ornare. Vestibulum sollicitudin
           risus a urna eleifend, ut congue lacus vehicula. Duis maximus

@@ -1,14 +1,16 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { HiCheck } from "react-icons/hi";
 import { HiChevronUpDown } from "react-icons/hi2";
 
-export default function ListBox({ selectItems }) {
+export default function ListBox({ selectItems, formData, setFormData }) {
   const [filter, setFilter] = useState(selectItems[0]);
-
+  useEffect(() => {
+    setFormData({ ...formData, jobType: filter });
+  }, [filter]);
   return (
     <div className="w-full">
-      <Listbox value={filter} onChange={setFilter}>
+      <Listbox name="jobType" value={filter} onChange={setFilter}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default text-gray-500 border-0 border-b-[1px] border-gray-300 appearance-none dark:border-gray-600 py-[6px] pl-3 pr-10 text-left focus:outline-none">
             <span className="block">{filter}</span>

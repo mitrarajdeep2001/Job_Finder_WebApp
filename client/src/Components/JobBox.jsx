@@ -1,9 +1,8 @@
 import React from "react";
 import ListBox from "./Listbox";
-import { jobList } from "../data";
 import JobCard from "./JobCard";
 
-const JobBox = () => {
+const JobBox = ({jobList}) => {
   const sortFilters = ["Newest", "Oldest", "A-Z", "Z-A"];
 
   return (

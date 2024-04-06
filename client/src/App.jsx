@@ -10,10 +10,16 @@ import UploadJob from "./Pages/UploadJob";
 import AuthModal from "./Components/AuthModal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MyPosts from "./Components/MyPosts";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const mode = useSelector((state) => state.mode);
   const authModal = useSelector((state) => state.authModal);
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <div className={mode}>
       {/* Auth modal starts */}
@@ -38,6 +44,7 @@ function App() {
         <Route path="/companies" element={<Company />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/upload-job" element={<UploadJob />} />
+        <Route path="/my-posts" element={<MyPosts />} />
       </Routes>
       <Footer />
     </div>

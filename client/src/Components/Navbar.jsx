@@ -48,9 +48,14 @@ const Navbar = () => {
             <NavLink to="/companies">Companies</NavLink>
           </li>
           {user && user.userType === "company" && (
-            <li className="dark:text-white">
-              <NavLink to="/upload-job">Upload Job</NavLink>
-            </li>
+            <>
+              <li className="dark:text-white">
+                <NavLink to="/upload-job">Upload Job</NavLink>
+              </li>
+              <li className="dark:text-white">
+                <NavLink to="/my-posts">My Posts</NavLink>
+              </li>
+            </>
           )}
           <li className="dark:text-white">
             <NavLink to="/about-us">About</NavLink>
@@ -132,9 +137,14 @@ const Navbar = () => {
           Companies
         </NavLink>
         {user && user.userType === "company" && (
-          <NavLink to="/upload-job" className={"dark:text-white"}>
-            Upload Job
-          </NavLink>
+          <>
+            <NavLink to="/upload-job" className={"dark:text-white"}>
+              Upload Job
+            </NavLink>
+            <NavLink to="/my-posts" className={"dark:text-white"}>
+              My Posts
+            </NavLink>
+          </>
         )}
         <NavLink
           to="/about-us"

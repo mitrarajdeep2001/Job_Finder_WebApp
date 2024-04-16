@@ -32,7 +32,7 @@ const About = () => {
             />
           </div>
         </div>
-        <p className="font-medium dark:text-white" data-aos="fade-up">
+        <p className="font-medium dark:text-white">
           Etiam justo justo, placerat vel fringilla at, egestas eu felis.
           Phasellus vel libero at ligula mattis ornare. Vestibulum sollicitudin
           risus a urna eleifend, ut congue lacus vehicula. Duis maximus

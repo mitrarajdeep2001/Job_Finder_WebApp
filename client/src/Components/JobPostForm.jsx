@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import ListBox2 from "./Listbox2";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { notifySuccess } from "../Toast";
+import { notifyError, notifySuccess } from "../Toast";
 import { useNavigate } from "react-router-dom";
+import UploadImg from "./Upload";
 
 const JobPostForm = () => {
   const jobType = ["Select-job-type", "Full-Time", "Part-Time", "Contract"];
@@ -17,34 +18,42 @@ const JobPostForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    const { data, status } = await axios.post(
-      `http://localhost:3000/post/create`,
-      { ...formData, user_id }
-    );
-    console.log(data, status);
-    if (status === 201) {
-      setFormData({
-        ...formData,
-        jobTitle: "",
-        jobType: "",
-        jobDesc: "",
-        jobResp: "",
-        salary: "",
-        location: "",
-        noOfVacancy: "",
-        yearOfExp: "",
-      });
-      notifySuccess("Job posted successfully");
-      navigate("/my-posts");
+    try {
+      const { data, status } = await axios.post(
+        `http://localhost:3000/post/create`,
+        { ...formData, user_id }
+      );
+      console.log(data, status);
+      if (status === 201) {
+        setFormData({
+          ...formData,
+          jobTitle: "",
+          jobType: "",
+          jobDesc: "",
+          jobResp: "",
+          salary: "",
+          location: "",
+          noOfVacancy: "",
+          yearOfExp: "",
+        });
+        notifySuccess("Job posted successfully");
+        navigate("/my-posts");
+      }
+    } catch (error) {
+      console.log(error);
+      notifyError(error.message);
     }
   };
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto bg-[#ffffff] dark:bg-blue-100 p-5 md:p-10 rounded-md my-10 w-full lg:max-h-[700px] lg:w-2/3"
+      className="mx-auto bg-[#ffffff] dark:bg-blue-100 p-5 md:p-10 rounded-md my-10 w-full lg:max-h-[800px] lg:w-2/3"
       data-aos="zoom-in"
     >
       <h2 className="text-slate-500 text-3xl font-medium mb-5">Job Post</h2>
+      <div className="py-2">
+        <UploadImg formData={formData} setFormData={setFormData} />
+      </div>
       <div className="relative z-0 w-full mb-5 group">
         <input
           type="text"

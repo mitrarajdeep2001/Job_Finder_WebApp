@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Pagination = () => {
+const Pagination = ({ totalPages }) => {
+  const pages = [];
+  for (let index = 1; index <= 3; index++) {
+    pages.push(
+      <li key={index}>
+        <button
+          
+          className="font-bold flex items-center justify-center px-4 h-10 leading-tight bg-[#ffffff] hover:bg-gray-100 dark:bg-[#1d4fd826] hover:dark:bg-slate-900 border border-gray-300 dark:border-blue-600 text-black dark:text-white"
+        >
+          {index}
+        </button>
+      </li>
+    );
+  }
+  console.log(pages);
   return (
     <nav className="container mx-auto py-5">
       <ul className="flex items-center justify-center h-10 text-base">
         <li>
-          <a
-            href="#"
+          <button
+            
             className="flex items-center justify-center px-4 h-10 ms-0 leading-tight bg-[#ffffff] hover:bg-gray-100 dark:bg-[#1d4fd826] hover:dark:bg-slate-900 border border-r-0 border-gray-300 dark:border-blue-600 rounded-l-md text-black dark:text-white"
           >
             <span className="sr-only">Previous</span>
@@ -25,19 +39,12 @@ const Pagination = () => {
                 d="M5 1 1 5l4 4"
               />
             </svg>
-          </a>
+          </button>
         </li>
+        {pages}
         <li>
-          <a
-            href="#"
-            className="flex items-center justify-center px-4 h-10 leading-tight bg-[#ffffff] hover:bg-gray-100 dark:bg-[#1d4fd826] hover:dark:bg-slate-900 border border-gray-300 dark:border-blue-600 text-black dark:text-white"
-          >
-            1
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
+          <button
+            
             className="flex items-center justify-center px-4 h-10 leading-tight bg-[#ffffff] hover:bg-gray-100 dark:bg-[#1d4fd826] hover:dark:bg-slate-900 border border-l-0 border-gray-300 dark:border-blue-600 rounded-r-md text-black dark:text-white"
           >
             <span className="sr-only">Next</span>
@@ -56,7 +63,7 @@ const Pagination = () => {
                 d="m1 9 4-4-4-4"
               />
             </svg>
-          </a>
+          </button>
         </li>
       </ul>
     </nav>

@@ -6,6 +6,7 @@ require("dotenv").config();
 const createPost = async (req, res) => {
   try {
     const {
+      companyLogo,
       jobTitle,
       jobType,
       salary,
@@ -18,6 +19,7 @@ const createPost = async (req, res) => {
     } = req.body;
     // Create a new post using the Post model
     const newPost = new Post({
+      companyLogo,
       jobTitle,
       jobType,
       salary,
@@ -49,15 +51,51 @@ const createPost = async (req, res) => {
 };
 
 // Function to get all posts
+const getPosts = async (req, res) => {
+  const page = parseInt(req.query.page) || 1; // Current page number (default to 1)
+  const limit = parseInt(req.query.limit) || 9; // Number of items per page (default to 10)
+
+  try {
+    const posts = await Post.find()
+      .skip((page - 1) * limit) // Skip items based on page number
+      .limit(limit); // Limit the number of items per page
+
+    const totalPosts = await Post.countDocuments(); // Total number of posts
+
+    res.status(200).json({
+      totalPosts,
+      totalPages: Math.ceil(totalPosts / limit), // Calculate total pages
+      currentPage: page,
+      posts,
+    });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 
 // Function to get all posts by a specific user
 const getPostsById = async (req, res) => {
   try {
     const { user_id } = req.params;
-    // Find all posts by the specified user ID
-    const posts = await Post.find({ postedBy: user_id });
+    const page = parseInt(req.query.page) || 1; // Current page number (default to 1)
+    const limit = parseInt(req.query.limit) || 3; // Number of items per page (default to 10)
 
-    res.status(200).json(posts);
+    // Calculate the skip value based on the page and limit
+    const skip = (page - 1) * limit;
+
+    // Find all posts by the specified user ID with pagination
+    const posts = await Post.find({ postedBy: user_id })
+      .skip(skip)
+      .limit(limit);
+
+    const totalPosts = await Post.find({ postedBy: user_id }).countDocuments(); // Total number of posts
+    res.status(200).json({
+      totalPosts,
+      totalPages: Math.ceil(totalPosts / limit), // Calculate total pages
+      currentPage: page,
+      posts,
+    });
   } catch (error) {
     console.error("Error fetching posts by user ID:", error);
     res.status(500).send("Server Error");
@@ -66,4 +104,4 @@ const getPostsById = async (req, res) => {
 
 module.exports = { getPostsById };
 
-module.exports = { createPost, getPostsById };
+module.exports = { createPost, getPosts, getPostsById };

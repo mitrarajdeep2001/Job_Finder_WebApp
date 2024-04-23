@@ -6,6 +6,7 @@ require("dotenv").config();
 const createPost = async (req, res) => {
   try {
     const {
+      companyName,
       companyLogo,
       jobTitle,
       jobType,
@@ -14,11 +15,12 @@ const createPost = async (req, res) => {
       yearOfExp,
       location,
       jobDesc,
-      jobResp,
+      aboutCompany,
       user_id,
     } = req.body;
     // Create a new post using the Post model
     const newPost = new Post({
+      companyName,
       companyLogo,
       jobTitle,
       jobType,
@@ -27,7 +29,7 @@ const createPost = async (req, res) => {
       yearOfExp,
       location,
       jobDesc,
-      jobResp,
+      aboutCompany,
       postedBy: user_id, // Assuming user_id is the ID of the user who created the post
     });
 
@@ -53,14 +55,14 @@ const createPost = async (req, res) => {
 // Function to get all posts
 const getPosts = async (req, res) => {
   const page = parseInt(req.query.page) || 1; // Current page number (default to 1)
-  const limit = parseInt(req.query.limit) || 9; // Number of items per page (default to 10)
+  const limit = parseInt(req.query.limit) || 3; // Number of items per page (default to 10)
 
   try {
     const posts = await Post.find()
       .skip((page - 1) * limit) // Skip items based on page number
       .limit(limit); // Limit the number of items per page
 
-    const totalPosts = await Post.countDocuments(); // Total number of posts
+    const totalPosts = await Post.find().countDocuments(); // Total number of posts
 
     res.status(200).json({
       totalPosts,
@@ -102,6 +104,26 @@ const getPostsById = async (req, res) => {
   }
 };
 
+// Function to get a specific post by id
+const getPostById = async (req, res) => {
+  try {
+    const postId = req.params.id; // Assuming the post ID is passed in the URL parameters
+
+    // Find the post by ID using Mongoose
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.status(200).json(post);
+  } catch (error) {
+    console.error("Error fetching post by ID:", error);
+    res.status(500).send("Server Error");
+  }
+};
+
+
 module.exports = { getPostsById };
 
-module.exports = { createPost, getPosts, getPostsById };
+module.exports = { createPost, getPosts, getPostsById, getPostById };

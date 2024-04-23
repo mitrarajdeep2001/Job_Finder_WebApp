@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
+  companyName: { type: String, required: true },
   companyLogo: { type: String },
   jobTitle: { type: String, required: true },
   jobType: { type: String, required: true },
@@ -9,7 +10,7 @@ const postSchema = new mongoose.Schema({
   yearOfExp: { type: Number, required: true },
   location: { type: String, required: true },
   jobDesc: { type: String, required: true },
-  jobResp: { type: String, required: true },
+  aboutCompany: { type: String, required: true },
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

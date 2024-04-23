@@ -1,6 +1,7 @@
 import { IoLocationOutline } from "react-icons/io5";
 import noImgAvailable from "../assets/no-image-available.jpeg";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const JobCard = ({ e }) => {
   // Function to calculate how long ago a post was made
@@ -32,10 +33,10 @@ const JobCard = ({ e }) => {
   // const postTimestamp = '2024-04-03T16:27:38.089+00:00'; // Replace with your post timestamp
   // const timeAgo = calculateTimeAgo(postTimestamp);
   // console.log(timeAgo); // Output: "3 days ago" (or the appropriate time ago message)
-
+  const navigate = useNavigate();
   return (
     <div
-      key={e.id}
+      onClick={() => navigate(`/view-job/${e._id}`)}
       className=" bg-[#ffffff] dark:bg-blue-100 p-5 md:p-10 rounded-lg shadow-lg transform hover:scale-110 relative hover:z-30 hover:shadow-xl transition ease-out delay-150 cursor-pointer"
     >
       <div className="flex justify-between items-center gap-5">
@@ -47,7 +48,8 @@ const JobCard = ({ e }) => {
           />
         </div>
         <div>
-          <p className="text-lg font-bold">{e.jobTitle}</p>
+          <p className="text-xl font-bold">{e.jobTitle}</p>
+          <p className="text-red-500 font-bold">{e.companyName}</p>
           <p className="font-medium flex items-center gap-2">
             <IoLocationOutline />
             {e.location}

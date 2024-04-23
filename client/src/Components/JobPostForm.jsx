@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListBox2 from "./Listbox2";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { notifyError, notifySuccess } from "../Toast";
 import { useNavigate } from "react-router-dom";
 import UploadImg from "./Upload";
+import { jwtDecode } from "jwt-decode";
 
 const JobPostForm = () => {
   const jobType = ["Select-job-type", "Full-Time", "Part-Time", "Contract"];
-  const user_id = useSelector((state) => state.user._id);
+  const [user, setUser] = useState(null);
+  const token = useSelector((state) => state.token);
+  useEffect(() => {
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUser(decoded);
+    }
+  }, []);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const handleChange = (e) => {
@@ -21,7 +29,7 @@ const JobPostForm = () => {
     try {
       const { data, status } = await axios.post(
         `http://localhost:3000/post/create`,
-        { ...formData, user_id }
+        { ...formData, companyName: user.companyName, user_id: user.userId }
       );
       console.log(data, status);
       if (status === 201) {
@@ -30,7 +38,7 @@ const JobPostForm = () => {
           jobTitle: "",
           jobType: "",
           jobDesc: "",
-          jobResp: "",
+          aboutCompany: "",
           salary: "",
           location: "",
           noOfVacancy: "",
@@ -168,12 +176,12 @@ const JobPostForm = () => {
       </div>
       <div className="relative z-0 w-full mb-5 group">
         <textarea
-          name="jobResp"
-          value={formData.jobResp}
+          name="aboutCompany"
+          value={formData.aboutCompany}
           onChange={handleChange}
           rows="4"
           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-blue-100 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none"
-          placeholder="Core Responsibilities"
+          placeholder="About Company"
           required
         ></textarea>
       </div>

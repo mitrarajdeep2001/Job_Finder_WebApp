@@ -67,19 +67,24 @@ const login = async (req, res) => {
     if (!isPasswordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
+    // Generate JWT token with user details
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        companyName: user.companyName,
+        email: user.email,
+        userType: user.userType,
+      },
+      process.env.JWT_SECRETE_KEY,
+      { expiresIn: "1h" }
+    );
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRETE_KEY, {
-      expiresIn: "1h", // Token expiration time (e.g., 1 hour)
+    res.status(200).json({
+      message: "Login successful",
+      token,
     });
-
-    // Remove password from user object
-    const userWithoutPassword = { ...user._doc };
-    delete userWithoutPassword.password;
-
-    res
-      .status(200)
-      .json({ message: "Login successful", user: userWithoutPassword, token });
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).send("Server Error");

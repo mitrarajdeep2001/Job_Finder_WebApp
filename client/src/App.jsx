@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MyPosts from "./Components/MyPosts";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import ViewJob from "./Pages/ViewJob";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -45,6 +46,7 @@ function App() {
         <Route path="/about-us" element={<About />} />
         <Route path="/upload-job" element={<UploadJob />} />
         <Route path="/my-posts" element={<MyPosts />} />
+        <Route path="/view-job/:id" element={<ViewJob />} />
       </Routes>
       <Footer />
     </div>

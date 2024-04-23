@@ -7,7 +7,7 @@ export default function ListBox2({ selectItems }) {
   const [filter, setFilter] = useState(selectItems[0]);
 
   return (
-    <div className="w-44">
+    <div className="w-44 z-50">
       <Listbox value={filter} onChange={setFilter}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white dark:bg-blue-100 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none">

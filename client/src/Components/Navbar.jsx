@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import CustomButton from "./CustomButton";
 import { AiOutlineClose } from "react-icons/ai";
@@ -11,6 +11,8 @@ import {
   setTheme,
 } from "../Redux-Toolkit/Slices/auth";
 import { BiLogOut } from "react-icons/bi";
+import { jwtDecode } from "jwt-decode";
+import { IconButton } from "@mui/material";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +22,9 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const mode = useSelector((state) => state.mode);
-  const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token);
+  const user = token && jwtDecode(token);
+  console.log(user);
   return (
     <header className="relative bg-[#f7fdfd] dark:bg-slate-900 z-30">
       {/* Desktop menu starts */}
@@ -65,18 +69,22 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-10">
           {/* Theme button starts */}
           {mode === "dark" ? (
-            <MdOutlineLightMode
-              fontSize={"1.5rem"}
-              color="white"
-              cursor={"pointer"}
-              onClick={() => dispatch(setTheme(!mode))}
-            />
+            <IconButton>
+              <MdOutlineLightMode
+                fontSize={"1.5rem"}
+                color="white"
+                cursor={"pointer"}
+                onClick={() => dispatch(setTheme(!mode))}
+              />
+            </IconButton>
           ) : (
-            <MdDarkMode
-              fontSize={"1.5rem"}
-              cursor={"pointer"}
-              onClick={() => dispatch(setTheme(!mode))}
-            />
+            <IconButton>
+              <MdDarkMode
+                fontSize={"1.5rem"}
+                cursor={"pointer"}
+                onClick={() => dispatch(setTheme(!mode))}
+              />
+            </IconButton>
           )}
           {/* Theme button ends */}
           {/* Auth button starts */}
@@ -93,7 +101,7 @@ const Navbar = () => {
                 cursor={"pointer"}
                 onClick={() => {
                   dispatch(setLogout());
-                  sessionStorage.removeItem("jwt");
+                  window.location.href = "/";
                 }}
               />
             </div>
@@ -156,18 +164,22 @@ const Navbar = () => {
         <div className="flex flex-row-reverse items-center gap-10">
           {/* Theme button starts */}
           {mode === "dark" ? (
-            <MdOutlineLightMode
-              fontSize={"1.5rem"}
-              color="white"
-              cursor={"pointer"}
-              onClick={() => dispatch(setTheme(!mode))}
-            />
+            <IconButton>
+              <MdOutlineLightMode
+                fontSize={"1.5rem"}
+                color="white"
+                cursor={"pointer"}
+                onClick={() => dispatch(setTheme(!mode))}
+              />
+            </IconButton>
           ) : (
-            <MdDarkMode
-              fontSize={"1.5rem"}
-              cursor={"pointer"}
-              onClick={() => dispatch(setTheme(!mode))}
-            />
+            <IconButton>
+              <MdDarkMode
+                fontSize={"1.5rem"}
+                cursor={"pointer"}
+                onClick={() => dispatch(setTheme(!mode))}
+              />
+            </IconButton>
           )}
           {/* Theme button ends */}
           {/* Auth button starts */}

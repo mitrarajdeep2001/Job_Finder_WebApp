@@ -1,74 +1,87 @@
-import React from "react";
-import { jobList } from "../data";
+import React, { useState } from "react";
 import ListBox from "./Listbox";
 import noImgAvailable from "../assets/no-image-available.jpeg";
+import moment from "moment";
 
-const CompanyList = () => {
-  const getUniqueCompanies = (job) => {
-    // Create an object to store unique company names array
-    const uniqueCompanies = {};
-
-    // Iterate through the array(jobList) and store array of objects with unique company names
-    job.forEach((obj) => {
-      const companyName = obj.company;
-
-      // If the company name is not in the uniqueCompanies object, add it
-      if (!uniqueCompanies[companyName]) {
-        uniqueCompanies[companyName] = [];
-      }
+const CompanyList = ({ jobList }) => {
+  const getUniqueCompanies = () => {
+    const uniqueCompanies = new Set();
+    jobList.forEach((job) => {
+      uniqueCompanies.add(job.companyName);
     });
-    job.forEach((obj) => {
-      const companyName = obj.company;
-
-      // If the company name is in the uniqueCompanies object, add job obj to the corresponding company name
-      if (uniqueCompanies[companyName]) {
-        uniqueCompanies[companyName].push(obj);
-      }
-    });
-    return uniqueCompanies;
+    return Array.from(uniqueCompanies);
   };
-  const uniqueCompaniesList = Object.entries(getUniqueCompanies(jobList));
-  console.log(uniqueCompaniesList);
-  const sortFilters = ["Newest", "Oldest", "A-Z", "Z-A"];
+
+  const uniqueCompanies = getUniqueCompanies();
+  const sortFilters = ["A-Z", "Z-A"];
+  const [filter, setFilter] = useState(sortFilters[0]);
+
+  const filteredCompanies = uniqueCompanies
+    .filter((company) => {
+      if (filter === "A-Z") {
+        return company;
+      } else if (filter === "Z-A") {
+        return company;
+      }
+      return true; // Default case, no specific filter applied
+    })
+    .sort((a, b) => {
+      if (filter === "A-Z") {
+        return a.localeCompare(b); // Sort alphabetically A-Z
+      } else if (filter === "Z-A") {
+        return b.localeCompare(a); // Sort alphabetically Z-A
+      }
+    });
+
   return (
     <div className="container mx-auto px-5">
       <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-3 md:gap-0">
         <p className="font-medium dark:text-white">
-          Showing <span className="font-bold">1</span> to{" "}
-          <span className="font-bold">9</span> of{" "}
-          <span className="font-bold">{jobList.length}</span> jobs
+          Showing <span className="font-bold">{uniqueCompanies.length}</span>{" "}
+          companies
         </p>
-        <ListBox selectItems={sortFilters}/>
+        <ListBox
+          filter={filter}
+          setFilter={setFilter}
+          selectItems={sortFilters}
+        />
       </div>
-      <div className="my-5">
-        {uniqueCompaniesList.map((e, index) => (
-          <div
-            key={index}
-            className="flex justify-between items-center mb-3 p-3 bg-[#ffffff] dark:bg-blue-100 shadow-lg rounded-lg cursor-pointer hover:scale-105 transition-transform"
-          >
-            <div className="flex items-center gap-5">
-              <div className="w-20 h-20 rounded-full flex items-center">
-                <img
-                  src={e[1][0].companyLogo || noImgAvailable}
-                  alt="company_logo"
-                  className="rounded-full object-cover"
-                />
-              </div>
-              <p className="font-medium">{e[0]}</p>
-            </div>
-            <div className="line-clamp-3 font-medium">
-              {e[1].map((obj) => (
-                <p>
-                  {obj.location}
-                </p>
+      <div className="py-5">
+        {filteredCompanies.map((company, index) => {
+          // Filter jobs for the current company
+          const companyJobs = jobList.filter(
+            (job) => job.companyName === company
+          );
+          return (
+            <div key={index} className="pb-10">
+              <h2 className="font-bold text-xl text-red-600 mb-3">{company}</h2>
+              {companyJobs.map((job, jobIndex) => (
+                <div
+                  key={jobIndex}
+                  className="flex justify-between items-center p-3 mb-5 bg-white shadow-lg rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                >
+                  <div className="flex items-center gap-5">
+                    <div className="w-20 h-20 rounded-full overflow-hidden">
+                      <img
+                        src={job.companyLogo || noImgAvailable}
+                        alt="company_logo"
+                        className="rounded-full object-cover w-full h-full"
+                      />
+                    </div>
+                    <p className="font-medium">{job.jobTitle}</p>
+                  </div>
+                  <div className="line-clamp-3 font-medium">{job.location}</div>
+                  <div className="flex flex-col items-center">
+                    <p className="font-medium text-slate-400">Posted on</p>
+                    <p className="font-bold text-blue-700">
+                      {moment(job.createdAt).format("MMM Do YY")}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
-            <div className="flex flex-col items-center">
-              <p className="font-bold text-blue-700">{e[1].length}</p>
-              <p className="font-medium text-slate-400">Jobs Posted</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

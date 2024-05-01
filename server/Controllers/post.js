@@ -55,7 +55,7 @@ const createPost = async (req, res) => {
 // Function to get all posts
 const getPosts = async (req, res) => {
   const page = parseInt(req.query.page) || 1; // Current page number (default to 1)
-  const limit = parseInt(req.query.limit) || 6; // Number of items per page (default to 10)
+  const limit = parseInt(req.query.limit) || 6; // Number of items per page (default to 6)
 
   try {
     const posts = await Post.find()

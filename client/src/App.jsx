@@ -16,8 +16,8 @@ import "aos/dist/aos.css";
 import ViewJob from "./Pages/ViewJob";
 
 function App() {
-  const mode = useSelector((state) => state.mode);
-  const authModal = useSelector((state) => state.authModal);
+  const mode = useSelector((state) => state.auth.mode);
+  const authModal = useSelector((state) => state.auth.authModal);
   useEffect(() => {
     Aos.init();
   }, []);

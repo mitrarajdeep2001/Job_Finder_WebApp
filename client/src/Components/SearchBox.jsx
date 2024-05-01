@@ -1,30 +1,44 @@
 import { AiOutlineSearch, AiOutlineCloseCircle } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
-import CustomButton from "./CustomButton";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setKeyword,
+  setLocation,
+  clearSearch,
+} from "../Redux-Toolkit/Slices/search";
 
 const SearchBox = () => {
-    const [searchInput, setSearchInput] = useState({job: "", location: ""})
-    const handleSearchInput = (e) => {
-        setSearchInput({
-            ...searchInput,[e.target.name]: e.target.value
-        })
+  const searchInput = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+
+  const handleSearchInput = (e) => {
+    const { name, value } = e.target;
+    if (name === "keyword") {
+      dispatch(setKeyword(value));
+    } else if (name === "location") {
+      dispatch(setLocation(value));
     }
+  };
+
   return (
     <div className="flex justify-around items-center p-3 md:p-8 bg-[#ffffff] dark:bg-blue-100 rounded-full shadow-xl md:shadow-2xl">
       <div className="flex items-center gap-2">
-        {<AiOutlineSearch />}
+        <AiOutlineSearch />
         <input
           placeholder="Job Title or Company"
           className="focus:outline-none dark:bg-blue-100"
-          name="job"
-          value={searchInput.job}
+          name="keyword"
+          value={searchInput.keyword}
           onChange={handleSearchInput}
         />
-        {searchInput.job && <button>{<AiOutlineCloseCircle />}</button>}
+        {searchInput.keyword && (
+          <button onClick={() => dispatch(clearSearch())}>
+            <AiOutlineCloseCircle />
+          </button>
+        )}
       </div>
       <div className="hidden md:flex items-center gap-2">
-        {<IoLocationOutline />}
+        <IoLocationOutline />
         <input
           placeholder="City or State or Country"
           className="focus:outline-none dark:bg-blue-100"
@@ -32,16 +46,11 @@ const SearchBox = () => {
           value={searchInput.location}
           onChange={handleSearchInput}
         />
-        {searchInput.location && <button>{<AiOutlineCloseCircle />}</button>}
-      </div>
-      <div>
-        <CustomButton
-          onClick={""}
-          title="Search"
-          containerStyles={
-            "text-white py-2 md:py3 px-3 md:px-10 focus:outline-none bg-blue-600 hover:bg-blue-800 rounded-full md:rounded-md text-sm md:text-base"
-          }
-        />
+        {searchInput.location && (
+          <button onClick={() => dispatch(clearSearch())}>
+            <AiOutlineCloseCircle />
+          </button>
+        )}
       </div>
     </div>
   );

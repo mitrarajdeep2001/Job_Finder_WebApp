@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import ListBox from "./Listbox";
 import JobCard from "./JobCard";
+import { useSelector } from "react-redux";
 
 const JobBox = ({ currentPage, totalJobs, jobList, jobType, exp }) => {
   const sortFilters = ["Newest", "Oldest"];
   const [filter, setFilter] = useState(sortFilters[0]);
+  const searchInput = useSelector((state) => state.search);
 
   // Calculate the start and end indices based on the current page and jobs per page
   const startIndex = (currentPage - 1) * jobList.length + 1;
@@ -17,11 +19,6 @@ const JobBox = ({ currentPage, totalJobs, jobList, jobType, exp }) => {
 
       // Check if any experience range is selected
       const isExpSelected = Object.values(exp).some((value) => value);
-
-      // If neither job type nor experience range is selected, return true for all jobs
-      if (!isJobTypeSelected && !isExpSelected) {
-        return true;
-      }
 
       // Check if the job's type matches any selected job type
       const jobTypeMatch =
@@ -40,7 +37,15 @@ const JobBox = ({ currentPage, totalJobs, jobList, jobType, exp }) => {
             job.yearOfExp < Number(range.split("-")[1])
         );
 
-      return jobTypeMatch && expMatch;
+      // Check if job matches the search input (keyword or location)
+      const keywordMatch =
+        job.jobTitle.toLowerCase().includes(searchInput.keyword.toLowerCase()) ||
+        job.companyName.toLowerCase().includes(searchInput.keyword.toLowerCase());
+
+      const locationMatch =
+        job.location.toLowerCase().includes(searchInput.location.toLowerCase());
+
+      return jobTypeMatch && expMatch && keywordMatch && locationMatch;
     })
     .sort((a, b) => {
       if (filter === "Newest") {

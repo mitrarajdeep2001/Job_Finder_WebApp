@@ -14,7 +14,7 @@ const MyPosts = () => {
   });
 
   const [user, setUser] = useState(null);
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.auth.token);
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode(token);

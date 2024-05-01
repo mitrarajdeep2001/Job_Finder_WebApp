@@ -21,8 +21,8 @@ const Navbar = () => {
   };
 
   const dispatch = useDispatch();
-  const mode = useSelector((state) => state.mode);
-  const token = useSelector((state) => state.token);
+  const mode = useSelector((state) => state.auth.mode);
+  const token = useSelector((state) => state.auth.token);
   const user = token && jwtDecode(token);
   console.log(user);
   return (

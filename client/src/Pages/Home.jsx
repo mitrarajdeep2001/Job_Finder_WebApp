@@ -15,8 +15,7 @@ const Home = () => {
     totalPosts: 0,
   });
 
-  const token = useSelector((state) => state.token);
-  const user = token && jwtDecode(token);
+
   useEffect(() => {
     getData();
   }, [jobData.currentPage]); // Trigger getData when currentPage changes
@@ -33,7 +32,6 @@ const Home = () => {
   const handlePageChange = (event, page) => {
     setJobData({ ...jobData, currentPage: page });
   };
-console.log(user);
   return (
     <div className="bg-[#f7fdfd] dark:bg-slate-900">
       <Hero jobTitles={jobData.posts} />

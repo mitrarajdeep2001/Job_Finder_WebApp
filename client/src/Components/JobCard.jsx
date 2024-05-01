@@ -4,35 +4,6 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 const JobCard = ({ e }) => {
-  // Function to calculate how long ago a post was made
-  const calculateTimeAgo = (postTimestamp) => {
-    const currentTimestamp = moment(); // Current timestamp
-    const postTime = moment(postTimestamp); // Post timestamp
-    const duration = moment.duration(currentTimestamp.diff(postTime));
-
-    // Calculate the difference in days, hours, or minutes
-    const days = duration.asDays();
-    const hours = duration.asHours();
-    const minutes = duration.asMinutes();
-
-    // Determine the appropriate time unit based on the difference
-    if (days >= 1) {
-      return `${Math.floor(days)} day${Math.floor(days) !== 1 ? "s" : ""} ago`;
-    } else if (hours >= 1) {
-      return `${Math.floor(hours)} hour${
-        Math.floor(hours) !== 1 ? "s" : ""
-      } ago`;
-    } else {
-      return `${Math.floor(minutes)} minute${
-        Math.floor(minutes) !== 1 ? "s" : ""
-      } ago`;
-    }
-  };
-
-  // Example usage
-  // const postTimestamp = '2024-04-03T16:27:38.089+00:00'; // Replace with your post timestamp
-  // const timeAgo = calculateTimeAgo(postTimestamp);
-  // console.log(timeAgo); // Output: "3 days ago" (or the appropriate time ago message)
   const navigate = useNavigate();
   return (
     <div
@@ -61,8 +32,11 @@ const JobCard = ({ e }) => {
         <p className="font-bold text-blue-800 bg-blue-200 px-2 py-1 rounded-lg">
           {e.jobType}
         </p>
-        <p className="text-gray-500 font-medium">
-          {calculateTimeAgo(e.createdAt)}
+        <p className="font-bold text-red-800 bg-red-200 px-2 py-1 rounded-lg">
+          Exp: {e.yearOfExp}
+        </p>
+        <p className="font-bold text-gray-800 bg-gray-300 px-2 py-1 rounded-lg">
+          {moment(e.createdAt).startOf("hour").fromNow()}
         </p>
       </div>
     </div>

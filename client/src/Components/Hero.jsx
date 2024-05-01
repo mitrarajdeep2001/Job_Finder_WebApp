@@ -1,9 +1,9 @@
 import React from "react";
 import heroImg from "../assets/hero.png";
 import SearchBox from "./SearchBox";
-import { jobTitles } from "../data";
+// import { jobTitles } from "../data";
 
-const Banner = () => {
+const Banner = ({jobTitles}) => {
   return (
     <div className="container mx-auto p-5 h-auto">
       <div className="flex justify-between items-end">
@@ -19,8 +19,8 @@ const Banner = () => {
       <SearchBox />
       <div className="flex flex-wrap mt-5">
         {
-          jobTitles.map((({id, title}) => (
-            <div key={id} className="p-1 bg-[#1d4fd826] text-blue-600 text-xs rounded-full mr-3 md:mx-6 my-2 cursor-pointer">{title}</div>
+          jobTitles.map((({_id, jobTitle}) => (
+            <div key={_id} className="p-1 bg-[#1d4fd826] text-blue-600 text-xs rounded-full mr-3 md:mx-6 my-2 cursor-pointer">{jobTitle}</div>
           )))
         }
       </div>

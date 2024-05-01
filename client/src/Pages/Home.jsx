@@ -36,7 +36,7 @@ const Home = () => {
 console.log(user);
   return (
     <div className="bg-[#f7fdfd] dark:bg-slate-900">
-      <Hero />
+      <Hero jobTitles={jobData.posts} />
       <JobsContainer currentPage={jobData.currentPage} totalJobs={jobData.totalPosts} jobs={jobData.posts} />
       <div className="flex justify-center">
         <Pagination

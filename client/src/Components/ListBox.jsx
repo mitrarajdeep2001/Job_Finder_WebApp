@@ -3,8 +3,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { HiCheck } from "react-icons/hi";
 import { HiChevronUpDown } from "react-icons/hi2";
 
-export default function ListBox2({ selectItems }) {
-  const [filter, setFilter] = useState(selectItems[0]);
+export default function ListBox2({ filter, setFilter, selectItems }) {
 
   return (
     <div className="w-44 z-50">

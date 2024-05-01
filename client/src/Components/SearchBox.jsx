@@ -15,7 +15,7 @@ const SearchBox = () => {
       <div className="flex items-center gap-2">
         {<AiOutlineSearch />}
         <input
-          placeholder="Job Titles or Keywords"
+          placeholder="Job Title or Company"
           className="focus:outline-none dark:bg-blue-100"
           name="job"
           value={searchInput.job}

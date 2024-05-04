@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ListBox2 from "./Listbox2";
+// import ListBox2 from "./Listbox2";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { notifyError, notifySuccess } from "../Toast";
@@ -82,11 +82,11 @@ const JobPostForm = () => {
       </div>
       <div className="grid lg:grid-cols-2 lg:gap-6">
         <div className="relative w-full mb-5 group">
-          <ListBox2
+          {/* <ListBox2
             formData={formData}
             setFormData={setFormData}
             selectItems={jobType}
-          />
+          /> */}
         </div>
         <div className="relative z-0 w-full mb-5 group">
           <input

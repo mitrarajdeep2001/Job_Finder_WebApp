@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ListBox from "./Listbox";
+// import ListBox from "./Listbox";
 import noImgAvailable from "../assets/no-image-available.jpeg";
 import moment from "moment";
 
@@ -40,11 +40,11 @@ const CompanyList = ({ jobList }) => {
           Showing <span className="font-bold">{uniqueCompanies.length}</span>{" "}
           companies
         </p>
-        <ListBox
+        {/* <ListBox
           filter={filter}
           setFilter={setFilter}
           selectItems={sortFilters}
-        />
+        /> */}
       </div>
       <div className="py-5">
         {filteredCompanies.map((company, index) => {

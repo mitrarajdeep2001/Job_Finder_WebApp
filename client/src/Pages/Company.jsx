@@ -12,7 +12,7 @@ const Company = () => {
 
   const getData = async () => {
     const { data, status } = await axios.get(
-      `http://localhost:3000/post/getPosts?limit=10000`
+      `${import.meta.env.VITE_BACKEND_API}/post/getPosts?limit=10000`
     );
     if (status === 200) {
       setData(data.posts);

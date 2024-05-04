@@ -16,7 +16,7 @@ const ViewJob = () => {
   async function getPost() {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/post/getPost/${id}`
+        `${import.meta.env.VITE_BACKEND_API}/post/getPost/${id}`
       );
       setPost(data);
     } catch (error) {

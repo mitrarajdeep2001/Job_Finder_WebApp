@@ -22,7 +22,7 @@ const Home = () => {
 
   const getData = async () => {
     const { data, status } = await axios.get(
-      `http://localhost:3000/post/getPosts?page=${jobData.currentPage}`
+      `${import.meta.env.VITE_BACKEND_API}/post/getPosts?page=${jobData.currentPage}`
     );
     if (status === 200) {
       setJobData({ ...jobData, ...data });

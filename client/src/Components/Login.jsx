@@ -40,7 +40,7 @@ const Login = ({ tab, setIsSignup }) => {
         };
       }
       const { data } = await axios.post(
-        "http://localhost:3000/auth/login",
+        `${import.meta.env.VITE_BACKEND_API}/auth/login`,
         payload
       );
       dispatch(setLogin({user: data.user, token: data.token})) //Store user's data in local storage

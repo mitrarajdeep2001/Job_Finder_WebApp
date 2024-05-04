@@ -83,7 +83,7 @@ const Signup = ({ tab, setIsSignup }) => {
         ipAddress: ipAddress.data,
       };
       const { data } = await axios.post(
-        "http://localhost:3000/auth/register",
+        `${import.meta.env.VITE_BACKEND_API}/auth/register`,
         payload
       );
       console.log(data);

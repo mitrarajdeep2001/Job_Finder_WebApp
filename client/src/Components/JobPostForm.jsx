@@ -28,7 +28,7 @@ const JobPostForm = () => {
     console.log(formData);
     try {
       const { data, status } = await axios.post(
-        `http://localhost:3000/post/create`,
+        `${import.meta.env.VITE_BACKEND_API}/post/create`,
         { ...formData, companyName: user.companyName, user_id: user.userId }
       );
       console.log(data, status);

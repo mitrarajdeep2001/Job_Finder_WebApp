@@ -5,11 +5,18 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store, { persistor } from "./Redux-Toolkit/store.js";
 import { PersistGate } from "redux-persist/integration/react";
+import axios from "axios";
 // import App from "./App.jsx";
 
+// const LazyLoadedComponent = React.lazy(() => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => resolve(import("./App.jsx")), 3000); // Add a 3s delay
+//   });
+// });
 const LazyLoadedComponent = React.lazy(() => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(import("./App.jsx")), 3000); // Add a 3s delay
+  return new Promise(async (resolve) => {
+    await axios.get(`${import.meta.env.VITE_BACKEND_API}/`)
+    resolve(import("./App.jsx"))
   });
 });
 const root = createRoot(document.getElementById("root"));

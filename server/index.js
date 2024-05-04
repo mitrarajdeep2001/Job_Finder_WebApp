@@ -19,6 +19,7 @@ function startServer() {
     // List of allowed origins separated by commas
     const allowedOrigins = [
       "http://localhost:5173",
+      "https://job-finder-web-app-nu.vercel.app",
       "https://job-finder-web-nmqp5m4vw-mitrarajdeep2001s-projects.vercel.app",
       // Add more origins as needed
     ];

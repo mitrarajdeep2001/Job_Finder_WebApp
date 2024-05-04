@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ListBox from "./Listbox";
+// import ListBox from "./Listbox";
 import JobCard from "./JobCard";
 import { useSelector } from "react-redux";
 
@@ -64,11 +64,11 @@ const JobBox = ({ currentPage, totalJobs, jobList, jobType, exp }) => {
           to <span className="font-bold">{endIndex}</span> of{" "}
           <span className="font-bold">{totalJobs}</span> jobs
         </p>
-        <ListBox
+        {/* <ListBox
           filter={filter}
           setFilter={setFilter}
           selectItems={sortFilters}
-        />
+        /> */}
       </div>
       <div className="w-full grid lg:grid-cols-2 xl:grid-cols-3 gap-3 my-5">
         {filteredList.map((e) => (

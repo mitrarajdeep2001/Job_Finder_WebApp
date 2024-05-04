@@ -3,7 +3,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { HiCheck } from "react-icons/hi";
 import { HiChevronUpDown } from "react-icons/hi2";
 
-export default function ListBox({ selectItems, formData, setFormData }) {
+export default function ListBox2({ selectItems, formData, setFormData }) {
   const [filter, setFilter] = useState(selectItems[0]);
   useEffect(() => {
     setFormData({ ...formData, jobType: filter });

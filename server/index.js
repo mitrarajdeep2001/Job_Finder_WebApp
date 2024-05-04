@@ -41,6 +41,9 @@ function startServer() {
   connectToDatabase();
 
   // Routes
+  app.use("/", (req, res) => {
+    res.send("Welcome!")
+  })
   app.use("/auth", authRouter);
   app.use("/post", postRouter);
 
